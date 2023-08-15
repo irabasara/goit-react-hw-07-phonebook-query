@@ -2,9 +2,10 @@ import css from './ContactForm.module.css';
 import * as yup from 'yup';
 import { nanoid } from '@reduxjs/toolkit';
 import { Formik, Form, Field, ErrorMessage, useFormik } from 'formik';
-import { useDispatch, useSelector } from 'react-redux';
-import { getContacts } from 'redux/selector';
-import { addContacts } from 'redux/contactsOperations';
+import {
+  useGetAllContactsQuery,
+  useAddContactMutation,
+} from 'redux/contactsSlice';
 
 const Schema = yup.object().shape({
   name: yup
@@ -33,8 +34,8 @@ export const ContactForm = () => {
     },
   });
 
-  const dispatch = useDispatch();
-  const contacts = useSelector(getContacts);
+  const { data: contacts } = useGetAllContactsQuery();
+  const [addContact] = useAddContactMutation();
 
   const handleSubmit = (values, { resetForm }) => {
     if (
@@ -44,15 +45,13 @@ export const ContactForm = () => {
     ) {
       alert(`${values.name} is already in contacts`);
       resetForm();
-
       return;
     }
-    dispatch(
-      addContacts({
-        name: values.name.toLowerCase(),
-        phone: values.number,
-      })
-    );
+
+    addContact({
+      name: values.name.toLowerCase(),
+      phone: values.number,
+    });
 
     resetForm();
   };

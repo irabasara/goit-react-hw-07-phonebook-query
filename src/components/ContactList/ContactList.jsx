@@ -1,18 +1,16 @@
-import { useEffect } from 'react';
 import css from './contactList.module.css';
 import PropTypes from 'prop-types';
-import { useDispatch, useSelector } from 'react-redux';
-import { getContacts, getFilters } from 'redux/selector';
-import { deleteContacts, fetchContacts } from 'redux/contactsOperations';
+import { useSelector } from 'react-redux';
+import { getFilters } from 'redux/selector';
+import {
+  useGetAllContactsQuery,
+  useDeleteContactMutation,
+} from 'redux/contactsSlice';
 
 export const ContactList = () => {
-  const dispatch = useDispatch();
-  const contacts = useSelector(getContacts);
+  const { data: contacts } = useGetAllContactsQuery();
+  const [deleteContact, { isLoading }] = useDeleteContactMutation();
   const filterValue = useSelector(getFilters);
-
-  useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
 
   const getFilteredContact = () => {
     if (!contacts) return;
@@ -31,7 +29,7 @@ export const ContactList = () => {
           return (
             <li key={id} className={css.contactsItem}>
               <p>{`${name} : ${phone}`}</p>
-              <button onClick={() => dispatch(deleteContacts(id))}>
+              <button onClick={() => deleteContact(id)} disabled={isLoading}>
                 delete
               </button>
             </li>

@@ -1,0 +1,22 @@
+.filterWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.filter {
+  width: 300px;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.filter::placeholder {
+  font-size: 14px;
+  padding: 5px;
+}
+
+.filterWrapper label {
+  font-weight: 500;
+  font-size: 16px;
+  margin: 10px 0 0 0;
+}

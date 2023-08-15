@@ -1,0 +1,30 @@
+.form {
+  display: flex;
+  flex-direction: column;
+}
+.form label {
+  font-weight: 500;
+  font-size: 16px;
+}
+.input {
+  width: 300px;
+  padding: 10px;
+  margin: 10px 0;
+}
+.input + span {
+  color: rgb(151, 0, 0);
+  width: 324px;
+  font-size: 14px;
+  text-align: center;
+}
+.addButton {
+  width: 100px;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 10px auto 0;
+  transition: background-color 300ms ease;
+}
+.addButton:hover {
+  cursor: pointer;
+  background-color: rgb(166, 166, 166);
+}

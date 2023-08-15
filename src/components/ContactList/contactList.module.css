@@ -1,0 +1,28 @@
+.contactsItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 280px;
+  margin: 5px 0;
+  padding: 8px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px 2px rgb(163, 163, 163);
+}
+
+.contactsItem button {
+  padding: 3px;
+  border-radius: 5px;
+  border-width: 1px;
+  transition: background-color 300ms ease;
+}
+
+.contactsItem button:hover {
+  cursor: pointer;
+  background-color: rgb(166, 166, 166);
+}
+
+.contactsItem p {
+  font-weight: 500;
+  font-size: 16px;
+  margin: 0;
+}
